@@ -1,1 +1,1 @@
-hello_app.View = girder.View.extend({});
+custom_app.View = girder.View.extend({});

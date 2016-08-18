@@ -31,6 +31,7 @@ class CustomAppRoot(object):
 
     vars = {
         'apiRoot': '/api/v1',
+        'appName': 'example_external_plugin',
         'staticRoot': '/static',
         'title': 'Hello World'
     }
@@ -51,7 +52,7 @@ class CustomAppRoot(object):
         <link rel="stylesheet"
               href="${staticRoot}/built/app.min.css">
         <link rel="stylesheet"
-              href="${staticRoot}/built/plugins/hello_app/hello_app.min.css">
+              href="${staticRoot}/built/plugins/${appName}/${appName}.min.css">
         <link rel="icon"
               type="image/png"
               href="${staticRoot}/img/Girder_Favicon.png">
@@ -64,9 +65,9 @@ class CustomAppRoot(object):
         <script src="${staticRoot}/built/app.min.js"></script>
         <script src="${staticRoot}/built/plugins/gravatar/plugin.min.js">
         </script>
-        <script src="${staticRoot}/built/plugins/hello_app/hello_app.min.js">
+        <script src="${staticRoot}/built/plugins/${appName}/${appName}.min.js">
         </script>
-        <script src="${staticRoot}/built/plugins/hello_app/main.min.js"></script>
+        <script src="${staticRoot}/built/plugins/${appName}/main.min.js"></script>
       </body>
     </html>
     """

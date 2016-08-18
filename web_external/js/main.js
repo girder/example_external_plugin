@@ -1,8 +1,8 @@
 $(function () {
-    hello_app.events.trigger('g:appload.before');
-    hello_app.mainApp = new hello_app.App({
+    custom_app.events.trigger('g:appload.before');
+    custom_app.mainApp = new custom_app.App({
         el: 'body',
         parentView: null
     });
-    hello_app.events.trigger('g:appload.after');
+    custom_app.events.trigger('g:appload.after');
 });

@@ -1,6 +1,6 @@
-var hello_app = hello_app || {};
+var custom_app = custom_app || {};
 
-_.extend(hello_app, {
+_.extend(custom_app, {
     models: {},
     collections: {},
     views: {},
