@@ -1,6 +1,6 @@
 $(function () {
     hello_app.events.trigger('g:appload.before');
-    var app = new hello_app.App({
+    hello_app.mainApp = new hello_app.App({
         el: 'body',
         parentView: null
     });
