@@ -31,7 +31,7 @@ class CustomAppRoot(object):
 
     vars = {
         'apiRoot': '/api/v1',
-        'appName': 'example_external_plugin',
+        'appName': __name__.split('.')[-1],
         'staticRoot': '/static',
         'title': 'Hello World'
     }
