@@ -1,1 +1,1 @@
-hello_app.View = girder.View.extend({});
+example_external_plugin.View = girder.View.extend({});

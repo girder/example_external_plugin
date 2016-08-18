@@ -1,5 +1,5 @@
 {
     "globals": {
-        "hello_app": true
+        "example_external_plugin": true
     }
 }

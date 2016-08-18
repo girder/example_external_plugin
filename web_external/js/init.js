@@ -1,6 +1,6 @@
-var hello_app = hello_app || {};
+var example_external_plugin = example_external_plugin || {};
 
-_.extend(hello_app, {
+_.extend(example_external_plugin, {
     models: {},
     collections: {},
     views: {},

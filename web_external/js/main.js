@@ -1,8 +1,8 @@
 $(function () {
-    hello_app.events.trigger('g:appload.before');
-    hello_app.mainApp = new hello_app.App({
+    example_external_plugin.events.trigger('g:appload.before');
+    example_external_plugin.mainApp = new example_external_plugin.App({
         el: 'body',
         parentView: null
     });
-    hello_app.events.trigger('g:appload.after');
+    example_external_plugin.events.trigger('g:appload.after');
 });

@@ -1,4 +1,4 @@
-hello_app.views.LayoutHeaderUserView = hello_app.View.extend({
+example_external_plugin.views.LayoutHeaderUserView = example_external_plugin.View.extend({
 
     events: {
         'click a.g-login': function () {
@@ -31,7 +31,7 @@ hello_app.views.LayoutHeaderUserView = hello_app.View.extend({
     },
 
     render: function () {
-        this.$el.html(hello_app.templates.layoutHeaderUser({
+        this.$el.html(example_external_plugin.templates.layoutHeaderUser({
             user: girder.currentUser
         }));
 
