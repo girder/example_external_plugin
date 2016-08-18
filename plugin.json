@@ -8,7 +8,7 @@
     "grunt": {
         "file": "Gruntfile.js",
         "defaultTargets": [
-            "hello-app"
+            "example_external_plugin"
         ]
     }
 }

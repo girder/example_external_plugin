@@ -67,5 +67,5 @@ module.exports = function (grunt) {
         defaultTasks.push('uglify:' + pluginName);
     }
 
-    grunt.registerTask('hello-app', defaultTasks);
+    grunt.registerTask(pluginName, defaultTasks);
 };
