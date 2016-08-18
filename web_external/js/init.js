@@ -1,6 +1,6 @@
-var example_external_plugin = example_external_plugin || {};
+var custom_app = custom_app || {};
 
-_.extend(example_external_plugin, {
+_.extend(custom_app, {
     models: {},
     collections: {},
     views: {},

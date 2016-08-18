@@ -1,9 +1,9 @@
-example_external_plugin.App = girder.App.extend({
+custom_app.App = girder.App.extend({
 
     render: function () {
-        this.$el.html(example_external_plugin.templates.layout());
+        this.$el.html(custom_app.templates.layout());
 
-        new example_external_plugin.views.LayoutHeaderView({
+        new custom_app.views.LayoutHeaderView({
             el: this.$('#c-app-header-container'),
             parentView: this
         }).render();

@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             files: files
         });
         grunt.config.set('jade.' + pluginName + '.options', {
-            namespace: pluginName + '.templates'
+            namespace:  'custom_app.templates'
         });
         grunt.config.set('watch.jade_' + pluginName, {
             files: [jadeDir + '/**/*.jade'],

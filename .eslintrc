@@ -1,5 +1,5 @@
 {
     "globals": {
-        "example_external_plugin": true
+        "custom_app": true
     }
 }

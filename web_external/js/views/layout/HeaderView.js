@@ -1,16 +1,16 @@
-example_external_plugin.views.LayoutHeaderView = example_external_plugin.View.extend({
+custom_app.views.LayoutHeaderView = custom_app.View.extend({
     events: {
     },
 
     render: function () {
-        this.$el.html(example_external_plugin.templates.layoutHeader());
+        this.$el.html(custom_app.templates.layoutHeader());
 
         this.$('a[title]').tooltip({
             placement: 'bottom',
             delay: {show: 300}
         });
 
-        new example_external_plugin.views.LayoutHeaderUserView({
+        new custom_app.views.LayoutHeaderUserView({
             el: this.$('.h-current-user-wrapper'),
             parentView: this
         }).render();

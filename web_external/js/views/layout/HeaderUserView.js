@@ -1,4 +1,4 @@
-example_external_plugin.views.LayoutHeaderUserView = example_external_plugin.View.extend({
+custom_app.views.LayoutHeaderUserView = custom_app.View.extend({
 
     events: {
         'click a.g-login': function () {
@@ -31,7 +31,7 @@ example_external_plugin.views.LayoutHeaderUserView = example_external_plugin.Vie
     },
 
     render: function () {
-        this.$el.html(example_external_plugin.templates.layoutHeaderUser({
+        this.$el.html(custom_app.templates.layoutHeaderUser({
             user: girder.currentUser
         }));
 

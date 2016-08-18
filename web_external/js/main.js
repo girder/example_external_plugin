@@ -1,8 +1,8 @@
 $(function () {
-    example_external_plugin.events.trigger('g:appload.before');
-    example_external_plugin.mainApp = new example_external_plugin.App({
+    custom_app.events.trigger('g:appload.before');
+    custom_app.mainApp = new custom_app.App({
         el: 'body',
         parentView: null
     });
-    example_external_plugin.events.trigger('g:appload.after');
+    custom_app.events.trigger('g:appload.after');
 });
