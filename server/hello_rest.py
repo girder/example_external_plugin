@@ -24,6 +24,7 @@ from girder.api.rest import Resource
 
 class Hello(Resource):
     def __init__(self):
+        super(Hello, self).__init__()
         self.resourceName = 'hello'
         self.route('GET', (), self.getHello)
 
