@@ -1,0 +1,7 @@
+*.py[cod]
+.DS_Store
+.*.swp
+.*.swo
+__pycache__
+### PyCharm ###
+.idea/
