@@ -1,7 +1,8 @@
 module.exports = function (grunt) {
     var fs = require('fs');
+    var path = require('path');
     var defaultTasks = [];
-    var pluginName = 'example_external_plugin';
+    var pluginName = path.basename(__dirname)
     var pluginDir = 'plugins/' + pluginName;
     var staticDir = 'clients/web/static/built/plugins/' + pluginName;
     var sourceDir = 'web_external';
