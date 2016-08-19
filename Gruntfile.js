@@ -31,7 +31,10 @@ module.exports = function (grunt) {
     var cssDir = pluginDir + '/' + sourceDir + '/stylesheets';
     if (fs.existsSync(cssDir)) {
         var files = {};
-        files[staticDir + '/plugin.min.css'] = [cssDir + '/**/*.styl'];
+        // name this <pluginName>.min.css instead of plugin.min.css
+        // so that girder app won't load <pluginName>, which
+        // should only be loaded as a separate web app running as <pluginName>
+        files[staticDir + '/' + pluginName + '.min.css'] = [cssDir + '/**/*.styl'];
         grunt.config.set('stylus.' + pluginName, {
             files: files
         });
@@ -45,7 +48,10 @@ module.exports = function (grunt) {
     var jsDir = pluginDir + '/' + sourceDir + '/js';
     if (fs.existsSync(jsDir)) {
         var files = {};
-        files[staticDir + '/plugin.min.js'] = [
+        // name this <pluginName>.min.js instead of plugin.min.js
+        // so that girder app won't load <pluginName>, which
+        // should only be loaded as a separate web app running as <pluginName>
+        files[staticDir + '/' + pluginName + '.min.js'] = [
             jsDir + '/init.js',
             staticDir + '/templates.js',
             jsDir + '/view.js',
