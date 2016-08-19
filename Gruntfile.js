@@ -1,7 +1,8 @@
 module.exports = function (grunt) {
     var fs = require('fs');
+    var path = require('path');
     var defaultTasks = [];
-    var pluginName = 'example_external_plugin';
+    var pluginName = path.basename(__dirname)
     var pluginDir = 'plugins/' + pluginName;
     var staticDir = 'clients/web/static/built/plugins/' + pluginName;
     var sourceDir = 'web_external';
@@ -30,7 +31,7 @@ module.exports = function (grunt) {
     var cssDir = pluginDir + '/' + sourceDir + '/stylesheets';
     if (fs.existsSync(cssDir)) {
         var files = {};
-        files[staticDir + '/' + pluginName + '.min.css'] = [cssDir + '/**/*.styl'];
+        files[staticDir + '/plugin.min.css'] = [cssDir + '/**/*.styl'];
         grunt.config.set('stylus.' + pluginName, {
             files: files
         });
@@ -44,7 +45,7 @@ module.exports = function (grunt) {
     var jsDir = pluginDir + '/' + sourceDir + '/js';
     if (fs.existsSync(jsDir)) {
         var files = {};
-        files[staticDir + '/' + pluginName + '.min.js'] = [
+        files[staticDir + '/plugin.min.js'] = [
             jsDir + '/init.js',
             staticDir + '/templates.js',
             jsDir + '/view.js',

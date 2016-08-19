@@ -17,74 +17,58 @@
 #  limitations under the License.
 ###############################################################################
 
-import mako
+import os
+
+from girder.constants import SettingKey, PACKAGE_DIR, STATIC_ROOT_DIR
+from girder.utility.model_importer import ModelImporter
+from girder.utility.webroot import WebrootBase
+
 from .hello_rest import Hello
 
 
-class CustomAppRoot(object):
+class Webroot(WebrootBase):
     """
-    This serves the main index HTML file of the custom app from /
+    The webroot endpoint simply serves the main index HTML file.
     """
-    exposed = True
+    def __init__(self, templatePath=None):
+        plugin_name = __name__.split('.')[-1]
+        if not templatePath:
+            templatePath = os.path.join(PACKAGE_DIR, os.pardir, 'plugins',
+                                        plugin_name, 'server', 'webroot.mako')
+        super(Webroot, self).__init__(templatePath)
 
-    indexHtml = None
+        self.vars = {
+            'apiRoot': '/api/v1',
+            'staticRoot': '/static',
+            'title': 'Hello World',
+            'main_plugin': plugin_name
+            }
 
-    vars = {
-        'apiRoot': '/api/v1',
-        'appName': __name__.split('.')[-1],
-        'staticRoot': '/static',
-        'title': 'Hello World'
-    }
+    def _renderHTML(self):
+        self.vars['pluginCss'] = []
+        self.vars['pluginJs'] = []
+        builtDir = os.path.join(
+            STATIC_ROOT_DIR, 'clients', 'web', 'static', 'built', 'plugins')
+        self.vars['plugins'] = ModelImporter.model('setting').get(
+            SettingKey.PLUGINS_ENABLED, ())
+        for plugin in self.vars['plugins']:
+            if os.path.exists(os.path.join(builtDir, plugin, 'plugin.min.css')):
+                self.vars['pluginCss'].append(plugin)
+            if os.path.exists(os.path.join(builtDir, plugin, 'plugin.min.js')):
+                self.vars['pluginJs'].append(plugin)
 
-    template = r"""
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>${title}</title>
-        <link rel="stylesheet"
-              href="//fonts.googleapis.com/css?family=Droid+Sans:400,700">
-        <link rel="stylesheet"
-              href="${staticRoot}/lib/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet"
-              href="${staticRoot}/lib/fontello/css/fontello.css">
-        <link rel="stylesheet"
-              href="${staticRoot}/lib/fontello/css/animation.css">
-        <link rel="stylesheet"
-              href="${staticRoot}/built/app.min.css">
-        <link rel="stylesheet"
-              href="${staticRoot}/built/plugins/${appName}/${appName}.min.css">
-        <link rel="icon"
-              type="image/png"
-              href="${staticRoot}/img/Girder_Favicon.png">
-
-      </head>
-      <body>
-        <div id="g-global-info-apiroot" class="hide">${apiRoot}</div>
-        <div id="g-global-info-staticroot" class="hide">${staticRoot}</div>
-        <script src="${staticRoot}/built/libs.min.js"></script>
-        <script src="${staticRoot}/built/app.min.js"></script>
-        <script src="${staticRoot}/built/plugins/gravatar/plugin.min.js">
-        </script>
-        <script src="${staticRoot}/built/plugins/${appName}/${appName}.min.js">
-        </script>
-        <script src="${staticRoot}/built/plugins/${appName}/main.min.js"></script>
-      </body>
-    </html>
-    """
-
-    def GET(self):
-        if self.indexHtml is None:
-            self.indexHtml = mako.template.Template(self.template).render(
-                **self.vars)
-
-        return self.indexHtml
+        return super(Webroot, self)._renderHTML()
 
 
 def load(info):
+    # set the title of the HTML pages
+    info['serverRoot'].updateHtmlVars({'title': 'Hello World'})
+
+    # Move girder app to /girder, serve isic_archive app from /
+    info['serverRoot'], info['serverRoot'].girder = (
+        Webroot(), info['serverRoot'])
+
+    info['serverRoot'].api = info['serverRoot'].girder.api
+
     # Bind our hello REST resource
     info['apiRoot'].hello = Hello()
-
-    # Move girder app to /girder, serve our custom app from /
-    info['serverRoot'], info['serverRoot'].girder = (CustomAppRoot(),
-                                                     info['serverRoot'])
-    info['serverRoot'].api = info['serverRoot'].girder.api
