@@ -15,6 +15,8 @@
         <link rel="stylesheet"
               href="${staticRoot}/built/plugins/${plugin}/plugin.min.css">
     % endfor
+    <link rel="stylesheet"
+          href="${staticRoot}/built/plugins/${main_plugin}/${main_plugin}.min.css">
     <link rel="icon"
           type="image/png"
           href="${staticRoot}/img/Girder_Favicon.png">
@@ -28,6 +30,8 @@
       <script src="${staticRoot}/built/plugins/${plugin}/plugin.min.js">
       </script>
     % endfor
+    <script src="${staticRoot}/built/plugins/${main_plugin}/${main_plugin}.min.js">
+    </script>
     <script src="${staticRoot}/built/plugins/${main_plugin}/main.min.js"></script>
   </body>
 </html>
